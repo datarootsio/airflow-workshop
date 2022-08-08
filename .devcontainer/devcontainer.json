@@ -1,0 +1,6 @@
+{
+  "name": "dataroots-pizzeria-dev-container",
+  "dockerComposeFile": "../docker-compose.yaml",
+  "service": "dev-container-airflow",
+	"workspaceFolder": "/workspace/airflow-workshop/airflow"
+}
