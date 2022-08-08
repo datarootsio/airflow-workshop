@@ -15,6 +15,7 @@ x-airflow-common:
     AIRFLOW__CORE__LOAD_EXAMPLES: 'false'
     AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: '30'
     AIRFLOW__CORE__LAZY_LOAD_PLUGINS: 'false'
+    PIZZERIA_WEBSERVER: 'pizzeria-webserver:3000'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
   volumes:
     - ./airflow/dags:/opt/airflow/dags
@@ -228,6 +229,27 @@ services:
   #################################
   #         PIZZERIA SETUP        #
   #################################
+
+  postgres-pizzeria:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: pizzeria
+      POSTGRES_PASSWORD: pizzeria
+      POSTGRES_DB: pizzeria
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-U", "pizzeria" ]
+      interval: 5s
+      retries: 5
+    restart: always
+
+  pizzeria-webserver:
+    ports:
+      - 3000:3000
+    environment:
+      DATABASE_URL: "postgresql://pizzeria:pizzeria@postgres-pizzeria/pizzeria"
+    build:
+      context: ./dataroots-pizzeria
+      dockerfile: Dockerfile
 
 volumes:
   postgres-db-volume:

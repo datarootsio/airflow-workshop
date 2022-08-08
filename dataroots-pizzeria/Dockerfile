@@ -35,6 +35,8 @@ RUN yarn build
 FROM node:16-alpine AS runner
 WORKDIR /app
 
+COPY prisma prisma
+
 ENV NODE_ENV production
 # Uncomment the following line in case you want to disable telemetry during runtime.
 # ENV NEXT_TELEMETRY_DISABLED 1
@@ -58,4 +60,4 @@ EXPOSE 3000
 
 ENV PORT 3000
 
-CMD ["node", "server.js"]
+CMD [ "sh", "-c", "npx prisma db push --skip-generate && node server.js" ]
