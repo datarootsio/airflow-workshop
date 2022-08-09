@@ -102,7 +102,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -160,7 +159,6 @@ yarn-error.log*
 .pnpm-debug.log*
 
 # local env files
-.env
 .env*.local
 
 # vercel

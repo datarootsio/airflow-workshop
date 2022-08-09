@@ -57,8 +57,8 @@ export const pizzaRouter = createRouter()
 
       if (!pizzaOrder) {
         throw new trpc.TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "No pizza to bake :(",
+          code: "NOT_FOUND",
+          message: "Pizza not found!",
         });
       }
 
@@ -113,7 +113,6 @@ export const pizzaRouter = createRouter()
       };
     },
   })
-
   .mutation("send-for-delivery", {
     meta: {
       openapi: {
@@ -137,8 +136,8 @@ export const pizzaRouter = createRouter()
 
       if (!pizzaOrder) {
         throw new trpc.TRPCError({
-          code: "INTERNAL_SERVER_ERROR",
-          message: "Pizza is not in correct order status or doesn't exist :(",
+          code: "NOT_FOUND",
+          message: "Pizza not found!",
         });
       }
 
@@ -258,5 +257,40 @@ export const pizzaRouter = createRouter()
       });
 
       return pizzaOrders;
+    },
+  })
+  .query("is-baked", {
+    meta: {
+      openapi: {
+        enabled: true,
+        method: "GET",
+        path: "/pizza/is-baked/{orderId}",
+        tag: "pizzeria-airflow",
+        description: "Check if a pizza is baked or not",
+      },
+    },
+    input: z.object({
+      orderId: z.string(),
+    }),
+    output: z.object({
+      isBaked: z.boolean(),
+    }),
+    async resolve({ input, ctx }) {
+      const pizzaOrder = await ctx.prisma.pizzaOrder.findFirst({
+        where: {
+          id: Number(input.orderId),
+        },
+      });
+
+      if (!pizzaOrder) {
+        throw new trpc.TRPCError({
+          code: "NOT_FOUND",
+          message: "Pizza not found!",
+        });
+      }
+
+      return {
+        isBaked: pizzaOrder?.orderStatus == OrderStatus.Enum.Baked,
+      };
     },
   });
