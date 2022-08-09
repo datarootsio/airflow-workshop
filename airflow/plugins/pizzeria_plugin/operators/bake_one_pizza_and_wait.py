@@ -1,9 +1,8 @@
-import os
-import json
-
-import requests
+import time
 
 from airflow.models.baseoperator import BaseOperator
+
+from pizzeria_plugin.hooks import pizza
 
 
 class BakeOnePizzaAndWait(BaseOperator):
@@ -11,15 +10,9 @@ class BakeOnePizzaAndWait(BaseOperator):
         super().__init__(**kwargs)
 
     def execute(self, context):
-        pizzeria_webserver_url = os.environ["PIZZERIA_WEBSERVER"]
+        pizza_order_id = pizza.bake()
 
-        resp = requests.post(f"http://{pizzeria_webserver_url}/api/pizza/bake")
+        while not pizza.is_baked(pizza_order_id):
+            time.sleep(1)
 
-        if resp.status_code != 200:
-            raise Exception(
-                f"Something went wrong calling pizza api:\n{json.dumps(resp.json())}"
-            )
-
-        order_id = resp.json()["data"]["orderId"]
-
-        return order_id
+        return pizza_order_id

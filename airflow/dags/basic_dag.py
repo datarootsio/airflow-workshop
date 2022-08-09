@@ -1,16 +1,16 @@
-from datetime import datetime, timedelta
+from pendulum import datetime, timedelta
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
 
 with DAG(
-    "basic_dag",
-    schedule_interval=timedelta(days=1),
+    "basic-dag",
+    schedule_interval="5 4 * * *",
     start_date=datetime(2022, 1, 1),
     catchup=False,
 ) as dag:
     BashOperator(
-        task_id="print_date",
+        task_id="print-date",
         bash_command="date",
     )
