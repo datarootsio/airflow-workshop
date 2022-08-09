@@ -224,7 +224,7 @@ services:
       <<: *airflow-common-env
     volumes:
       - ..:/workspace:cached
-    command: /bin/sh -c "while sleep 1000; do :; done" 
+    command: /bin/sh -c "while sleep 1000; do :; done"
 
   #################################
   #         PIZZERIA SETUP        #
@@ -250,6 +250,19 @@ services:
     build:
       context: ./dataroots-pizzeria
       dockerfile: Dockerfile
+
+  oven-deliver:
+    image: alpine/curl
+    entrypoint: /bin/sh
+    command:
+      - -c
+      - |
+        while true
+        do
+          curl -X 'POST' 'http://pizzeria-webserver:3000/api/pizza/oven' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"backend_secret": "DATAROOTS-PIZZERIA-123"}'
+          curl -X 'POST' 'http://pizzeria-webserver:3000/api/pizza/deliver' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"backend_secret": "DATAROOTS-PIZZERIA-123"}'
+          sleep 10
+        done
 
 volumes:
   postgres-db-volume:
