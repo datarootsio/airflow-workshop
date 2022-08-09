@@ -2,7 +2,9 @@ from datetime import datetime, timedelta
 
 from airflow import DAG
 
-from pizzeria_plugin.operators.bake_one_pizza_and_wait import BakeOnePizzaAndWait
+from pizzeria_plugin.operators.bake_one_pizza_and_wait import (
+    BakeOnePizzaAndWait
+)
 
 
 with DAG(
