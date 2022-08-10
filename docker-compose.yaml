@@ -222,6 +222,7 @@ services:
       dockerfile: Dockerfile
     environment:
       <<: *airflow-common-env
+      PYTHONPATH: ":/workspace/airflow-workshop/airflow/plugins"
     volumes:
       - ..:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
