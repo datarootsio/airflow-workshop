@@ -129,3 +129,7 @@ You can also dockerize this stack and deploy a container.
 Here are some resources that we commonly refer to:
 
 - [Protecting routes with Next-Auth.js](https://next-auth.js.org/configuration/nextjs#unstable_getserversession)
+
+docker push ngelders/dataroots-pizzeria
+
+docker buildx build -t ngelders/dataroots-pizzeria:multi-v2 -o type=image --platform=linux/arm64,linux/amd64 . --push

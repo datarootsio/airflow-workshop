@@ -247,9 +247,7 @@ services:
       - 3000:3000
     environment:
       DATABASE_URL: "postgresql://pizzeria:pizzeria@postgres-pizzeria/pizzeria"
-    build:
-      context: ./dataroots-pizzeria
-      dockerfile: Dockerfile
+    image: ngelders/dataroots-pizzeria:multi-v2
 
   oven-deliver:
     image: alpine/curl
