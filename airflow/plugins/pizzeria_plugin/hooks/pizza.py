@@ -76,3 +76,20 @@ def by_status(order_status: str) -> List[Dict]:
         )
 
     return resp.json()["data"]
+
+
+def order(pizza_type: str) -> int:
+    payload = {"pizzaType": pizza_type}
+
+    resp = requests.post(
+        f"http://{PIZZERIA_WEBSERVER_URL}/api/pizza/order",
+        json=payload,
+    )
+
+    if resp.status_code != 200:
+        raise PizzaApiException(
+            "Something went wrong calling the pizza api:\n"
+            f"{json.dumps(resp.json())}"
+        )
+
+    return resp.json()["data"]["orderId"]
