@@ -247,7 +247,7 @@ services:
       - 3000:3000
     environment:
       DATABASE_URL: "postgresql://pizzeria:pizzeria@postgres-pizzeria/pizzeria"
-    image: ngelders/dataroots-pizzeria:multi-v2
+    image: ngelders/dataroots-pizzeria:multi-v3
     depends_on:
       - postgres-pizzeria
 
