@@ -3,6 +3,7 @@
   "dockerComposeFile": "../docker-compose.yaml",
   "service": "dev-container-airflow",
 	"workspaceFolder": "/workspace/airflow-workshop/airflow",
+  "shutdownAction": "stopCompose",
   "customizations": {
     "vscode": {
       "extensions": [
