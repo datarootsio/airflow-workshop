@@ -248,6 +248,8 @@ services:
     environment:
       DATABASE_URL: "postgresql://pizzeria:pizzeria@postgres-pizzeria/pizzeria"
     image: ngelders/dataroots-pizzeria:multi-v2
+    depends_on:
+      - postgres-pizzeria
 
   oven-deliver:
     image: alpine/curl
