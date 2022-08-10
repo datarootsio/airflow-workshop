@@ -11,7 +11,7 @@ from pizzeria_plugin.operators.deliver_pizza import (
 
 
 with DAG(
-    "bake-and-deliver-pizza",
+    "exercise-1",
     schedule_interval=None,
     start_date=datetime(2022, 1, 1),
     catchup=False,
