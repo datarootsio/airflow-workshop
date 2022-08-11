@@ -29,6 +29,5 @@ class EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable(Timetable):
         restriction: TimeRestriction,
     ) -> Optional[DagRunInfo]:
         # implement this function
-        # use https://www.astronomer.io/guides/scheduling-in-airflow/ > scroll to Timetables
-        # has a guideline
+        # doc: https://www.astronomer.io/guides/scheduling-in-airflow/ > scroll to Timetables
         pass
