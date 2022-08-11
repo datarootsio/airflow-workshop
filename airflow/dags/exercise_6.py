@@ -4,6 +4,8 @@
 
 # psuedo code:
 # while chance < random.random():
-#     # sleep here
+#     (sleep here)
+# (set to done here)
 
-# # set to done here
+# doc: https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html
+# check the triggerer container logs
