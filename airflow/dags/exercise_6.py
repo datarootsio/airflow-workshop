@@ -6,7 +6,7 @@ from pizzeria_plugin.deferrable_operator import RandomSensor
 
 
 with DAG(
-    "deferrable-operators-example",
+    "exercise-6",
     schedule_interval=None,
     start_date=datetime(2022, 1, 1),
     catchup=False,
