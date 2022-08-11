@@ -10,7 +10,7 @@ from pizzeria_plugin.timetables.my_timetable import EveryDayAtMidnightExceptWeek
 
 with DAG(
     "exercise-5",
-    timetable=EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable,
+    timetable=EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable(),
     start_date=datetime(2022, 8, 1),
     catchup=True,
 ) as dag:
