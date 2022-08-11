@@ -2,7 +2,12 @@ from datetime import timedelta
 from typing import Optional
 from pendulum import Date, DateTime, Time, timezone
 
-from airflow.timetables.base import DagRunInfo, DataInterval, TimeRestriction, Timetable
+from airflow.timetables.base import (
+    DagRunInfo,
+    DataInterval,
+    TimeRestriction,
+    Timetable,
+)
 
 UTC = timezone("UTC")
 DELTA = timedelta(days=1)
@@ -44,7 +49,9 @@ class EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable(Timetable):
             if not restriction.catchup:
                 next_start = max(
                     next_start,
-                    DateTime.combine(Date.today(), Time.min).replace(tzinfo=UTC),
+                    DateTime.combine(Date.today(), Time.min).replace(
+                        tzinfo=UTC
+                    ),
                 )
 
             next_start = next_start.set(hour=0, minute=0).replace(tzinfo=UTC)

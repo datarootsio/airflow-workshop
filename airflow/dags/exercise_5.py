@@ -1,11 +1,12 @@
-
 from pendulum import datetime
 
 from airflow import DAG
 from airflow.operators.bash import BashOperator
 
 
-from pizzeria_plugin.timetables.my_timetable import EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable
+from pizzeria_plugin.timetables.my_timetable import (
+    EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable,
+)
 
 
 with DAG(

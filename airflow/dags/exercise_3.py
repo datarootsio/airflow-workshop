@@ -4,11 +4,15 @@ from airflow import DAG
 from airflow import XComArg
 
 from pizzeria_plugin.operators.bake_pizzas_in_batch import BakePizzasInBatch
-from pizzeria_plugin.operators.wait_for_pizzas_to_be_baked import WaitForPizzasToBeBaked
+from pizzeria_plugin.operators.wait_for_pizzas_to_be_baked import (
+    WaitForPizzasToBeBaked,
+)
 from pizzeria_plugin.operators.deliver_pizza import (
     DeliverPizza,
 )
-from pizzeria_plugin.operators.wait_for_pizzas_to_be_delivered import WaitForAPizzaToBeDelivered
+from pizzeria_plugin.operators.wait_for_pizzas_to_be_delivered import (
+    WaitForAPizzaToBeDelivered,
+)
 
 
 with DAG(
@@ -27,17 +31,13 @@ with DAG(
         order_ids="{{ ti.xcom_pull(task_ids='bake-batch') }}",
     )
 
-    deliver = DeliverPizza.partial(
-        task_id="deliver-pizza"
-    ).expand(
+    deliver = DeliverPizza.partial(task_id="deliver-pizza").expand(
         order_id=XComArg(bake_batch, key="return_value")
     )
 
     wait_for_delivery = WaitForAPizzaToBeDelivered.partial(
         task_id="wait-for-delivery",
         poke_interval=5,
-    ).expand(
-        order_id=XComArg(bake_batch)
-    )
+    ).expand(order_id=XComArg(bake_batch))
 
     bake_batch >> wait_for_baked_pizza >> deliver >> wait_for_delivery

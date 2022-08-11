@@ -3,7 +3,9 @@ from pendulum import datetime
 from airflow import DAG
 
 from pizzeria_plugin.operators.bake_pizzas_in_batch import BakePizzasInBatch
-from pizzeria_plugin.operators.wait_for_pizzas_to_be_baked import WaitForPizzasToBeBaked
+from pizzeria_plugin.operators.wait_for_pizzas_to_be_baked import (
+    WaitForPizzasToBeBaked,
+)
 
 
 with DAG(

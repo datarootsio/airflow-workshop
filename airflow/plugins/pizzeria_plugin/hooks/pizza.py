@@ -53,7 +53,9 @@ def send_for_delivery(order_id: int) -> None:
 
 
 def bake_batch() -> List[int]:
-    resp = requests.post(f"http://{PIZZERIA_WEBSERVER_URL}/api/pizza/bake-batch")
+    resp = requests.post(
+        f"http://{PIZZERIA_WEBSERVER_URL}/api/pizza/bake-batch"
+    )
 
     if resp.status_code != 200:
         raise PizzaApiException(

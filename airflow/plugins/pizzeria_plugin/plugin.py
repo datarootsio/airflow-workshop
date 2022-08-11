@@ -1,6 +1,8 @@
 from airflow.plugins_manager import AirflowPlugin
 
-from pizzeria_plugin.timetables.my_timetable import EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable
+from pizzeria_plugin.timetables.my_timetable import (
+    EveryDayAtMidnightExceptWeekendsAndHolidaysTimetable,
+)
 
 
 class PizzeriaPlugin(AirflowPlugin):

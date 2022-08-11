@@ -14,9 +14,7 @@ class WaitForPizzasToBeBaked(BaseSensorOperator):
         self.order_ids = order_ids
 
     def poke(self, context):
-        order_ids_parsed: List[int] = json.loads(
-            self.order_ids
-        )
+        order_ids_parsed: List[int] = json.loads(self.order_ids)
 
         orders = pizza.by_status("Baked")
         order_ids_api = [order["id"] for order in orders]
