@@ -10,6 +10,9 @@
 
 ## Restart with clean env
 
+WARNING!! THIS WILL DELETE ALL VOLUMES  
+so if you have volumes with data that you need, be carefull.
+
 1. close the vscode window opened in the dev container
 2. make sure all containers are stopped `docker kill $(docker ps -aq)`
 3. remove all containers `docker container rm $(docker ps -aq)`
