@@ -6,7 +6,7 @@ from pizzeria_plugin.operators.order_pizza import OrderPizza
 
 
 with DAG(
-    "exercise-5",
+    "exercise-4",
     schedule_interval=None,
     start_date=datetime(2022, 1, 1),
     catchup=False,
