@@ -8,5 +8,6 @@
 
 ## useful commands
 
-- `black .`
+- `black . --line-length 79`
 - `pytest .`
+- `docker ps` -> look for airflow component you want to debug `docker logs <container-id>`
