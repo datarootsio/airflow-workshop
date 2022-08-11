@@ -20,5 +20,15 @@ with DAG(
         bash_command="echo hello",
     )
 
-    print_date >> echo
+    # https://airflow.apache.org/docs/apache-airflow/stable/templates-ref.html
+    use_macro = BashOperator(
+        task_id="use-macro",
+        bash_command=(
+            "echo 'data_interval_start={{ data_interval_start }};"
+            "data_interval_end={{ data_interval_end }}'"
+        ),
+    )
+
+    print_date >> echo >> use_macro
     # print_date.set_downstream(echo)
+    # echo.set_downstream(use_macro)
