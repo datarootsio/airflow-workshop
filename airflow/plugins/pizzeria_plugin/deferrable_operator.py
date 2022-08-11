@@ -23,7 +23,7 @@ class RandomTrigger(BaseTrigger):
         sleep_time = 2
 
         rand = random.random()
-        while self.chance < random.random():
+        while self.chance < rand:
             print(f"chance({self.chance}): got rand {rand}")
             print(f"chance({self.chance}): sleeping {sleep_time}s")
 
