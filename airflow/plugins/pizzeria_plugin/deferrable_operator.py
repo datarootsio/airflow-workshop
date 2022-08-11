@@ -16,7 +16,7 @@ class RandomTrigger(BaseTrigger):
     def serialize(self) -> Tuple[str, Dict[str, Any]]:
         return (
             "pizzeria_plugin.deferrable_operator.RandomTrigger",
-            {"chance": self.chance}
+            {"chance": self.chance},
         )
 
     async def run(self):
@@ -42,7 +42,7 @@ class RandomSensor(BaseSensorOperator):
     def execute(self, context):
         self.defer(
             trigger=RandomTrigger(chance=self.chance),
-            method_name="execute_complete"
+            method_name="execute_complete",
         )
 
     def execute_complete(self, context, event=None):
