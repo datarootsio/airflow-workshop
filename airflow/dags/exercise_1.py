@@ -3,7 +3,7 @@
 # You have 2 Operators available
 #  - BakeOnePizzaAndWait
 #  - DeliverPizza
-# see: 
+# see:
 #  - airflow/plugins/pizzeria_plugin/operators/bake_one_pizza_and_wait.py
 #  - airflow/plugins/pizzeria_plugin/operators/deliver_pizza.py
 # Put the python DAG file in ./dags folder
