@@ -1,17 +1,8 @@
-from pendulum import datetime
+# Try calling a DAG via the CLI
+# Try calling a DAG via the API
+# Explore the functionality of the CLI (try out backfilling)
+# Explore the functionality of the API
 
-from airflow import DAG
-
-from pizzeria_plugin.operators.order_pizza import OrderPizza
-
-
-with DAG(
-    "exercise-4",
-    schedule_interval=None,
-    start_date=datetime(2022, 1, 1),
-    catchup=False,
-) as dag:
-    OrderPizza(
-        task_id="order-pizza",
-        pizza_type="{{ dag_run.conf['pizza_type'] }}",
-    )
+# Create an operator to order a pizza:
+#  - Use it in a DAG
+#  - Call it via the api and pass the pizza type as configuration
