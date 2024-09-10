@@ -1,7 +1,7 @@
-# Use what you’ve learned in the previous slide to create an operator and a sensor
-# Create an operator that bakes pizzas in batch (and doesn’t wait)
-# Create a sensor that waits for these pizza to be baked
-# Create a new DAG with these 2 operators operators
-# Play around with the sensor parameters (poke_interval, mode, timeout)
-# * Extra points: create a macro that checks if a pizza is baked.
-# * Extra extra points: write tests for your operator/sensor
+# Oh no! A pizza was baked but someone forgot to deliver it.
+# Write a DAG which can be triggered manually to correct the situation.
+# - Provide 2 parameters (orderId and specialGift) you can use when triggering the dag
+# - orderId is an int
+# - specialGift is a string but can the only allowed values are "Chocolates", "Bottle of Wine" or "Gift Voucher"
+# - use the DeliverPizza operator to send out the pizza of `orderId`
+# - afterwards, "send" the gift (this doesn't have to do anything, just print it)

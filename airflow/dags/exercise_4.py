@@ -1,8 +1,7 @@
-# Try calling a DAG via the CLI
-# Try calling a DAG via the API
-# Explore the functionality of the CLI (try out backfilling)
-# Explore the functionality of the API
-
-# Create an operator to order a pizza:
-#  - Use it in a DAG
-#  - Call it via the api and pass the pizza type as configuration
+# Use what you’ve learned in the previous slide to create an operator and a sensor
+# Create an operator that bakes pizzas in batch (and doesn’t wait)
+# Create a sensor that waits for these pizza to be baked
+# Create a new DAG with these 2 operators operators
+# Play around with the sensor parameters (poke_interval, mode, timeout)
+# * Extra points: create a macro that checks if a pizza is baked.
+# * Extra extra points: write tests for your operator/sensor
