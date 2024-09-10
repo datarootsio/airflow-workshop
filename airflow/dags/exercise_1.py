@@ -1,5 +1,5 @@
 # Create a DAG that delivers a Pizza
-# Schedule every 5 minutes, but not in the weekends
+# Schedule every hour, but not in the weekends
 # You have 2 Operators available
 #  - BakeOnePizzaAndWait
 #  - DeliverPizza

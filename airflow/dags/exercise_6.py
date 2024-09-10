@@ -1,11 +1,8 @@
-# Create deferrable RandomSensor
-# The sensor is set to ‘done’ if a random
-# number between 0..1 is lower than a given chance
+# Try calling a DAG via the CLI
+# Try calling a DAG via the API
+# Explore the functionality of the CLI (try out backfilling)
+# Explore the functionality of the API
 
-# psuedo code:
-# while chance < random.random():
-#     (sleep here)
-# (set to done here)
-
-# doc: https://airflow.apache.org/docs/apache-airflow/stable/concepts/deferring.html
-# check the triggerer container logs
+# Create an operator to order a pizza:
+#  - Use it in a DAG
+#  - Call it via the api and pass the pizza type as configuration
