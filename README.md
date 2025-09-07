@@ -2,16 +2,18 @@
 
 ## How to setup
 
-1. Github: https://github.com/datarootsio/airflow-workshop
-2. VSCode and install the extension “remote-containers”
-3. Clone the repo
-4. Open it in VSCode
-5. Open command pallet (cmd+shift+p on mac) and search for “remote-containers: rebuild and reopen” and press that
+1. Clone this repo: https://github.com/datarootsio/airflow-workshop
+2. Open VSCode and install the extension “Dev containers"
+4. Open this repo
+5. Open command pallete (cmd+shift+p on mac) and search for “Dev-containers: rebuild and reopen” and press that
+6. Wait a few minutes for all containers to start
+7. Access the Airflow UI at http://localhost:8080. User: `airflow`, password: `airflow`
+8. Start writing DAGs
 
 ## Restart with clean env
 
 WARNING!! THIS WILL DELETE ALL VOLUMES  
-so if you have volumes with data that you need, be carefull.
+You will lose dagruns, dataset events, XCOM, .. etc!
 
 1. close the vscode window opened in the dev container
 2. make sure all containers are stopped `docker kill $(docker ps -aq)`
