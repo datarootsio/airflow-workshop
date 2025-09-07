@@ -1,7 +1,7 @@
 # Create a DAG that delivers a Pizza
 # Schedule every hour, but not in the weekends
 # You have 2 Operators available
-#  - BakeOnePizzaAndWait
+#  - BakeOnePizzaAndWait (bakes a pizza and returns its API)
 #  - DeliverPizza
 # see:
 #  - airflow/plugins/pizzeria_plugin/operators/bake_one_pizza_and_wait.py

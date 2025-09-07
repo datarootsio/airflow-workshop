@@ -31,20 +31,17 @@ with DAG(
     catchup=False,
 ) as dag:
     ...
-
-
-
-# Using Macros
-print_date = BashOperator(
+    # Using Macros
+    print_date = BashOperator(
         task_id="print-date",
         bash_command="echo {{ execution_date }}",
     )
 
-# Using XCOM
-xcom_example = BashOperator(
-    task_id="xcom-example",
-    bash_command="echo {{ ti.xcom_pull(task_ids='my-task', key='my-key') }}",
-)
+    # Using XCOM
+    xcom_example = BashOperator(
+        task_id="xcom-example",
+        bash_command="echo {{ ti.xcom_pull(task_ids='my-task', key='my-key') }}",
+    )
 
 
 

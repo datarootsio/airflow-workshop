@@ -1,5 +1,8 @@
-# Create timetable should:
-#   - Run once a day at 00:00
-#   - Don’t run on weekends
-#   - Don’t run on provided holidays
-# see: airflow/plugins/pizzeria_plugin/timetables/my_timetable.py
+# Try calling a DAG via the CLI
+# Try calling a DAG via the API
+# Explore the functionality of the CLI (try out backfilling)
+# Explore the functionality of the API
+
+# Create an operator to order a pizza:
+#  - Use it in a DAG
+#  - Call it via the api and pass the pizza type as configuration

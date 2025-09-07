@@ -2,7 +2,6 @@ from airflow.models.baseoperator import BaseOperator
 
 from pizzeria_plugin.hooks import pizza
 
-
 class DeliverPizza(BaseOperator):
     template_fields = ["order_id"]
 
@@ -10,5 +9,5 @@ class DeliverPizza(BaseOperator):
         super().__init__(**kwargs)
         self.order_id = order_id
 
-    def execute(self, context):
-        pizza.send_for_delivery(int(self.order_id))
+    def execute(self, context) -> None:
+        pizza.deliver_pizza(self.order_id)

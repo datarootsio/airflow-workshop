@@ -16,6 +16,9 @@ x-airflow-common:
     AIRFLOW__SCHEDULER__DAG_DIR_LIST_INTERVAL: '30'
     AIRFLOW__CORE__LAZY_LOAD_PLUGINS: 'false'
     AIRFLOW__WEBSERVER__RELOAD_ON_PLUGIN_CHANGE: 'true'
+    AIRFLOW__WEBSERVER__WEB_SERVER_MASTER_TIMEOUT: 300
+    AIRFLOW__WEBSERVER__WEB_SERVER_WORKER_TIMEOUT: 300
+    AIRFLOW__WEBSERVER__WORKERS: 1
     AIRFLOW__CORE__EXECUTE_TASKS_NEW_PYTHON_INTERPRETER: 'true'
     PIZZERIA_WEBSERVER: 'pizzeria-webserver:3000'
     _PIP_ADDITIONAL_REQUIREMENTS: ${_PIP_ADDITIONAL_REQUIREMENTS:-}
@@ -198,6 +201,7 @@ services:
     volumes:
       - ./airflow:/sources
 
+
   #################################
   #         DEV CONTAINER         #
   #################################
@@ -212,41 +216,3 @@ services:
     volumes:
       - ..:/workspace:cached
     command: /bin/sh -c "while sleep 1000; do :; done"
-
-  #################################
-  #         PIZZERIA SETUP        #
-  #################################
-
-  postgres-pizzeria:
-    image: postgres:13
-    environment:
-      POSTGRES_USER: pizzeria
-      POSTGRES_PASSWORD: pizzeria
-      POSTGRES_DB: pizzeria
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-U", "pizzeria" ]
-      interval: 5s
-      retries: 5
-    restart: always
-
-  pizzeria-webserver:
-    ports:
-      - 3000:3000
-    environment:
-      DATABASE_URL: "postgresql://pizzeria:pizzeria@postgres-pizzeria/pizzeria"
-    image: ngelders/dataroots-pizzeria:multi-v3
-    depends_on:
-      - postgres-pizzeria
-
-  oven-deliver:
-    image: alpine/curl
-    entrypoint: /bin/sh
-    command:
-      - -c
-      - |
-        while true
-        do
-          curl -X 'POST' 'http://pizzeria-webserver:3000/api/pizza/oven' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"backend_secret": "DATAROOTS-PIZZERIA-123"}'
-          curl -X 'POST' 'http://pizzeria-webserver:3000/api/pizza/deliver' -H 'accept: application/json' -H 'Content-Type: application/json' -d '{"backend_secret": "DATAROOTS-PIZZERIA-123"}'
-          sleep 5
-        done
